@@ -12,7 +12,7 @@ function makeBoxes() {
     let apCreateTaskFinalizerButton = document.createElement("button");
     userInputParent.appendChild(apCreateTaskFinalizerButton);
     apCreateTaskFinalizerButton.innerText = "Organize";
-    apCreateTaskFinalizerButton.addEventListener("click", null);
+    apCreateTaskFinalizerButton.addEventListener("click", sortArray);
 }
 
 function collectArray() {
@@ -24,18 +24,29 @@ function collectArray() {
     return(arrayToReturn);
 }
 
-function sortArray(arr) {
+function sortArray() {
+    let arr = collectArray();
+    let workingArr = arr;
+    console.log(arr);
+    console.log("We will dismember" + workingArr + " for its crime of not being sorted correctly. ");
     let sortedArray = [];
     console.log(sortedArray);
     let lengthOfArr = arr.length;
     console.log(lengthOfArr);
-    let minimum = arr[0];
+    let minimum = Number.POSITIVE_INFINITY;
+    let minIndex = -1;
+    console.log(minimum);
     for (let i = 0; i < lengthOfArr; i++) {
-        for (let jet = 0; jet < arr.length; jet++) {
-            if (arr[jet] < minimum) {
-                minimum = arr[jet];
+        minimum = Number.POSITIVE_INFINITY;
+        minIndex = -1;
+        for (let jet = 0; jet < workingArr.length; jet++) {
+            if (workingArr[jet] < minimum) {
+                minIndex = jet;
+                minimum = workingArr[jet];
+                console.log(minimum);
             }
-        sortedArray.push(arr.pop(indexOf(minimum)));
         }
+        sortedArray.push(arr.splice(minIndex,1)[0]);
+        console.log(sortedArray);
     }
 }

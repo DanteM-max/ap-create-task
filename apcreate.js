@@ -12,7 +12,7 @@ function makeBoxes() {
     let apCreateTaskFinalizerButton = document.createElement("button");
     userInputParent.appendChild(apCreateTaskFinalizerButton);
     apCreateTaskFinalizerButton.innerText = "Organize";
-    apCreateTaskFinalizerButton.addEventListener("click", sortArray);
+    apCreateTaskFinalizerButton.addEventListener("click", workWithArray);
 }
 
 function collectArray() {
@@ -23,12 +23,11 @@ function collectArray() {
 
     return(arrayToReturn);
 }
-
-function sortArray() {
-    let arr = collectArray();
-    let workingArr = arr;
+//My student-generated function that accepts a parameter, displays sequencing, iterates through 2 nested loops (with at least n^2 steps), selects a value based on a condition, 
+function sortArray(arr) {
+    let workingArr = [...arr]; // given by MagicSchool AI
     console.log(arr);
-    console.log("We will dismember" + workingArr + " for its crime of not being sorted correctly. ");
+    console.log(workingArr);
     let sortedArray = [];
     console.log(sortedArray);
     let lengthOfArr = arr.length;
@@ -36,17 +35,32 @@ function sortArray() {
     let minimum = Number.POSITIVE_INFINITY;
     let minIndex = -1;
     console.log(minimum);
-    for (let i = 0; i < lengthOfArr; i++) {
+    for (let i = 0; i < lengthOfArr; i++) { // iteration
         minimum = Number.POSITIVE_INFINITY;
         minIndex = -1;
-        for (let jet = 0; jet < workingArr.length; jet++) {
-            if (workingArr[jet] < minimum) {
+        for (let jet = 0; jet < workingArr.length; jet++) {//iteration
+            if (workingArr[jet] < minimum) { //selection
                 minIndex = jet;
                 minimum = workingArr[jet];
                 console.log(minimum);
             }
         }
-        sortedArray.push(arr.splice(minIndex,1)[0]);
+        sortedArray.push(workingArr.splice(minIndex,1)[0]);
         console.log(sortedArray);
+        
     }
+    return sortedArray;
+}
+
+function workWithArray() {
+    let arrToPrint = sortArray(collectArray());
+    let outputArea = document.getElementById("array-output");
+    let arrayInText = document.createElement("p");
+    let paraText = "Your organized array is [";
+    for (let i = 0; i < arrToPrint.length; i++) {
+        paraText += arrToPrint[i] + ", ";
+    }
+    paraText += "]";
+    outputArea.appendChild(arrayInText);
+    arrayInText.innerText = paraText;
 }

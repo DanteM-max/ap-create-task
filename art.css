@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 body {
-    background-image: ;
+    background-image: linear-gradient(to bottom left, #44d94e,#463a8b);
+    min-height:100vh;
+    margin:0;
+    font-family:Atma;
+}
+button {
+    font-family:Lato;
+    border-radius:100px;
+
+}
+input {
+    font-family:Lato;
+    border-radius: 20px;
+    height:1.5em;
+}
+span {
+    font-family:Lato;
 }

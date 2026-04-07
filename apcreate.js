@@ -5,7 +5,7 @@ function makeBoxes() {
         return;
     }
     let n = parseInt(document.getElementById('item-count').value);
-    if (n == 0 || isNaN(0)) {
+    if (n == 0 || isNaN(n)) {
         let errorText = document.createElement("p");
         errorText.innerText = "Hmm... I don't understand how many boxes to make.\nMake sure to fill the box or provide just a number.";
         userInputParent.appendChild(errorText);
@@ -45,7 +45,6 @@ function sortArray(arr) {
     let lengthOfArr = arr.length;
     let minimum = Number.POSITIVE_INFINITY; // specific format for infinity given by MagicSchool AI
     let minIndex = -1;
-    console.log(minimum);
     for (let i = 0; i < lengthOfArr; i++) { // iteration
         minimum = Number.POSITIVE_INFINITY;
         minIndex = -1;
@@ -69,11 +68,29 @@ function workWithArray() {
     let arrToPrint = sortArray(arrayToSort);
     let outputArea = document.getElementById("array-output");
     let arrayInText = document.createElement("p");
-    let paraText = "Your organized array is [";
+    let span = document.createElement("span");
+    
+    let paraText = "Your organized array is ";
+    let spanText = "[";
     for (let i = 0; i < arrToPrint.length - 1; i++) {
-        paraText += arrToPrint[i] + ", ";
+        spanText += arrToPrint[i] + ", ";
     }
-    paraText += arrToPrint[arrToPrint.length - 1] + "]";
+    spanText += arrToPrint[arrToPrint.length - 1] + "]";
     outputArea.appendChild(arrayInText);
     arrayInText.innerText = paraText;
+    span.innerText = spanText;
+    arrayInText.appendChild(span);
+}
+let red = Math.random() * (50-10) + 10;
+let blue = Math.random * 256;
+let green = Math.random() * 256;
+let textColor = "";
+if (red+blue+green < 382.5) {
+    textColor = "white";
+} else {
+    textColor = "black";
+}
+
+for (element of document.querySelectorAll(".button")) {
+    element.setAttribute("style","background-color: rgb(" + red + "," + blue + "," + green + "), font-color:" + textColor);
 }

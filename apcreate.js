@@ -2,13 +2,30 @@ let userInputParent = document.getElementById("array-maker");
 let nArea = document.getElementById("item-count");
 function makeBoxes() {
     if (document.getElementsByClassName("arrayNumber").length > 0) {
+        let outputArea = document.getElementById("array-output");
+        outputArea.innerHTML = "";
+        let errorText = document.createElement("p");
+        errorText.innerText = "I can't make any more boxes. ";
+        outputArea.appendChild(errorText);
         return;
     }
     let n = parseInt(document.getElementById('item-count').value);
     if (n == 0 || isNaN(n)) {
+        let outputArea = document.getElementById("array-output");
+        outputArea.innerHTML = "";
         let errorText = document.createElement("p");
         errorText.innerText = "Hmm... I don't understand how many boxes to make.\nMake sure to fill the box or provide just a number.";
-        userInputParent.appendChild(errorText);
+        outputArea.appendChild(errorText);
+        makeColors();
+        return;
+    }
+
+    if (n > 250) {
+        let outputArea = document.getElementById("array-output");
+        outputArea.innerHTML = "";
+        let errorText = document.createElement("p");
+        errorText.innerText = "WOAH! That is WAY TOO MANY BOXES! I am not letting you continue. ";
+        outputArea.appendChild(errorText);
         return;
     }
     for (let i = 0; i < n; i++) {
@@ -22,14 +39,17 @@ function makeBoxes() {
     userInputParent.appendChild(apCreateTaskFinalizerButton);
     apCreateTaskFinalizerButton.innerText = "Organize";
     apCreateTaskFinalizerButton.addEventListener("click", workWithArray);
+    makeColors();
 }
 
 function collectArray() {
     let arrayToReturn = [];
     for (let i = 0; i < document.getElementsByClassName("arrayNumber").length; i++) {
         if(isNaN(parseInt(document.querySelectorAll(".arrayNumber")[i].value))) { //isNan provided by MagicSchool AI
+            let outputArea = document.getElementById("array-output");
+            outputArea.innerHTML = "";
             let errorText = document.createElement("p");
-            userInputParent.appendChild(errorText);
+            outputArea.appendChild(errorText);
             errorText.innerText = "Your array has something that isn't a number. Make sure there aren't any numbers in between + or - symbols.\nAlso make sure you filled all the boxes. If you have too many boxes, just refresh the page. ";
             return;
         }
@@ -67,6 +87,7 @@ function workWithArray() {
     }
     let arrToPrint = sortArray(arrayToSort);
     let outputArea = document.getElementById("array-output");
+    outputArea.innerHTML = "";
     let arrayInText = document.createElement("p");
     let span = document.createElement("span");
     
@@ -81,16 +102,20 @@ function workWithArray() {
     span.innerText = spanText;
     arrayInText.appendChild(span);
 }
-let red = Math.random() * (50-10) + 10;
-let blue = Math.random * 256;
-let green = Math.random() * 256;
-let textColor = "";
-if (red+blue+green < 382.5) {
-    textColor = "white";
-} else {
-    textColor = "black";
-}
 
-for (element of document.querySelectorAll(".button")) {
-    element.setAttribute("style","background-color: rgb(" + red + "," + blue + "," + green + "), font-color:" + textColor);
+
+function makeColors() {
+    let red = Math.random() * (50-10) + 10;
+    let blue = Math.random() * 256;
+    let green = Math.random() * 256;
+    let textColor = "";
+    if (red+blue+green < 282.5) {
+        textColor = "white";
+    } else {
+        textColor = "black";
+    }
+
+    for (element of document.querySelectorAll("button")) {
+        element.setAttribute("style","background-color: rgb(" + red + "," + blue + "," + green + "); color:" + textColor);
+    }
 }

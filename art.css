@@ -19,3 +19,11 @@ input {
 span {
     font-family:Lato;
 }
+
+button:hover {
+    font-family:Atma;
+}
+
+input:hover {
+    background-color: #d1fcd4;
+}

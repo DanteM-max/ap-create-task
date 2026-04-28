@@ -45,7 +45,7 @@ function makeBoxes() {
 function collectArray() {
     let arrayToReturn = [];
     for (let i = 0; i < document.getElementsByClassName("arrayNumber").length; i++) {
-        if(isNaN(parseInt(document.querySelectorAll(".arrayNumber")[i].value))) { //isNan provided by MagicSchool AI
+        if(isNaN(parseInt(document.querySelectorAll(".arrayNumber")[i].value))) { 
             let outputArea = document.getElementById("array-output");
             outputArea.innerHTML = "";
             let errorText = document.createElement("p");
@@ -58,18 +58,17 @@ function collectArray() {
 
     return(arrayToReturn);
 }
-//My student-generated function that accepts a parameter, displays sequencing, iterates through 2 nested loops (with at least n^2 steps), selects a value based on a condition, and uses an array. 
 function sortArray(arr) {
-    let workingArr = [...arr]; //spread operation given by MagicSchool AI
+    let workingArr = [...arr]; 
     let sortedArray = [];
     let lengthOfArr = arr.length;
-    let minimum = Number.POSITIVE_INFINITY; // specific format for infinity given by MagicSchool AI
+    let minimum = Number.POSITIVE_INFINITY; 
     let minIndex = -1;
-    for (let i = 0; i < lengthOfArr; i++) { // iteration
+    for (let i = 0; i < lengthOfArr; i++) { 
         minimum = Number.POSITIVE_INFINITY;
         minIndex = -1;
-        for (let jet = 0; jet < workingArr.length; jet++) {//iteration
-            if (workingArr[jet] < minimum) { //selection
+        for (let jet = 0; jet < workingArr.length; jet++) {
+            if (workingArr[jet] < minimum) { 
                 minIndex = jet;
                 minimum = workingArr[jet];
             }
